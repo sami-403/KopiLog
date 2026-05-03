@@ -5,6 +5,8 @@ export class ClienteView {
         tbody.innerHTML = '';
         clientes.forEach((element, key) => {
             const row = document.createElement('tr');
+            row.dataset.key = key;
+            row.id = `cliente-${key}`;
             row.innerHTML = `
                 <td>${key}</td>
                 <td>${element.nome}</td>
@@ -13,5 +15,19 @@ export class ClienteView {
                 `;
             tbody.appendChild(row);
         });
+    }
+
+    update(cliente, key) {
+        const row = document.getElementById(`cliente-${key}`);
+        if (row) {
+            row.innerHTML = `
+                <td>${key}</td>
+                <td>${cliente.nome}</td>
+                <td>${cliente.nascimento}</td>
+                <td>${cliente.qntVisitou}</td>
+                `;
+        } else {
+            console.warn(`Cliente com chave ${key} não encontrado para atualização.`);
+        }
     }
 }
