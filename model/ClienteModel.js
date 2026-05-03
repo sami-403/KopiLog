@@ -47,6 +47,21 @@ class ClienteModel {
   removerCliente(id) {
     return this.clientesCache.delete(id);
   }
+
+  buscarClientesPorNome(nomePesquisado) {
+    for (let [id, cliente] of this.clientesCache.entries()) {
+      if (cliente.nome === nomePesquisado) {
+        return id;
+      }
+    }
+    return null;
+  }
+
+  isExiste(nome) {
+    return Array.from(this.clientesCache.values()).some(
+      (cliente) => cliente.nome === nome,
+    );
+  }
 }
 
 // Exporta uma instância única (Singleton)
