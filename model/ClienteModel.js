@@ -1,4 +1,5 @@
 import Cliente from "./Cliente.js";
+import { dataInputFormatada } from "../utils/Data.js";
 
 class ClienteModel {
   constructor() {
@@ -15,6 +16,7 @@ class ClienteModel {
 
   criarCliente({ nome, nascimento }) {
     const id = this.gerarId();
+    nascimento = dataInputFormatada(nascimento);
     const novoCliente = new Cliente({ nome, nascimento });
     this.clientesCache.set(id, novoCliente);
     return { id: id, cliente: novoCliente };
