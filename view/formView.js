@@ -1,27 +1,37 @@
 export class FormView {
-    form = document.getElementById('cliente-form');
+    form = document.getElementById('form-container');
+    formCard = this.form.querySelector('.form-card');
     
     show() {
-        this.form.style.display = 'block';
+        this.form.classList.remove('hidden');
 
-        this._outsideCLickHandler = document.addEventListener('click', (event) => {
-            const isClickInsideForm = this.form.contains(event.target);
+        if (this._outsideClickHandler) {
+            document.removeEventListener('click', this._outsideClickHandler);
+        }
+
+        this._outsideClickHandler = (event) => {
+            const isClickInsideForm = this.formCard.contains(event.target);
             if (!isClickInsideForm) {
                 this.hide();
             }
-        });
+        };
+
+        document.addEventListener('click', this._outsideClickHandler);
     }
 
     hide() {
-        this.form.style.display = 'none';
+        this.form.classList.add('hidden');
         this.clear();
 
-        document.removeEventListener('click', this._outsideCLickHandler);
+        if (this._outsideClickHandler) {
+            document.removeEventListener('click', this._outsideClickHandler);
+            this._outsideClickHandler = null;
+        }
     }
 
     clear() {
-        this.form.querySelector('#nome').value = '';
-        this.form.querySelector('#nascimento').value = '';
+        this.form.querySelector('#input-nome').value = '';
+        this.form.querySelector('#input-nascimento').value = '';
 
         const feedback = this.form.querySelector('.error-feedback');
         if (feedback) {
@@ -30,8 +40,8 @@ export class FormView {
     }
 
     render(cliente) {
-        this.form.querySelector('#nome').value = cliente.nome;
-        this.form.querySelector('#nascimento').value = cliente.nascimento;
+        this.form.querySelector('#input-nome').value = cliente.nome;
+        this.form.querySelector('#input-nascimento').value = cliente.nascimento;
     }
 
     errorFeedback(message) {
