@@ -5,7 +5,9 @@ export function dataInputFormatada(dataDoInput) {
   if (dataDoInput) {
     const [ano, mes, dia] = dataDoInput.split("-");
 
-    const dataFormatada = `${dia}/${mes}`;
+    const diaFormatado = String(dia).padStart(2, "0");
+    const mesFormatado = String(mes).padStart(2, "0");
+    const dataFormatada = `${diaFormatado}/${mesFormatado}`;
     return dataFormatada;
   }
   return null;
