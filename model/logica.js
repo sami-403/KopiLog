@@ -9,7 +9,7 @@ export function gerarId() {
 export const clientesCache = new Map();
 
 //Cria um id para o cliente e adiciona ele no map e depois retorna o objeto
-export function criarCliente({nome, nascimento }) {
+export function criarCliente({ nome, nascimento }) {
   const id = gerarId();
   const novoCliente = new Cliente({ nome, nascimento });
   clientesCache.set(id, novoCliente);
@@ -31,7 +31,7 @@ export function pegarClientes() {
 export function registrarCompra(id, item, valor) {
   const cliente = clientesCache.get(id);
   if (!cliente) {
-      return null;
+    return null;
   }
 
   cliente.registrarVisita();
