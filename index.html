@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopilog</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="form-container hidden" id="form-container">
+        <form id="cliente-form" autocomplete="off" class="form-card">
+            <div class="form-inputs">
+                <input type="text" id="input-nome" placeholder="Nome" required>
+                <input type="date" id="input-nascimento" placeholder="Nascimento" required>
+                <button type="submit">Adicionar Cliente</button>
+            </div>
+        </form>
+    </div>
+
+    <main class="container">
+        <header>
+            <div class="logo">Kopi<span>Log</span></div>
+        </header>
+
+        <button id="add-cliente-btn">Adicionar Cliente</button>
+        <table id="cliente-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Nascimento</th>
+                    <th>Qtde. Visitas</th>
+                    <th>Desconto</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
+<script type="module" src="script.js"></script>
