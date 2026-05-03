@@ -1,17 +1,23 @@
+import { calcularDesconto } from "../utils/Descontos.js";
+import { formatarPercentual } from "../utils/Descontos.js";
+
 export class ClienteView {
     render(clientes) {
         const clienteTable = document.getElementById('cliente-table');
         const tbody = clienteTable.querySelector('tbody');
         tbody.innerHTML = '';
-        clientes.forEach((element, key) => {
+        
+
+        clientes.forEach((cliente, key) => {
             const row = document.createElement('tr');
             row.dataset.key = key;
             row.id = `cliente-${key}`;
             row.innerHTML = `
                 <td>${key}</td>
-                <td>${element.nome}</td>
-                <td>${element.nascimento}</td>
-                <td>${element.qntVisitou}</td>
+                <td>${cliente.nome}</td>
+                <td>${cliente.nascimento}</td>
+                <td>${cliente.qntVisitou}</td>
+                <td>${calcularDesconto(cliente, true)}%</td>
                 `;
             tbody.appendChild(row);
         });
@@ -25,6 +31,7 @@ export class ClienteView {
                 <td>${cliente.nome}</td>
                 <td>${cliente.nascimento}</td>
                 <td>${cliente.qntVisitou}</td>
+                <td>${calcularDesconto(cliente, true)}%</td>
                 `;
         } else {
             console.warn(`Cliente com chave ${key} não encontrado para atualização.`);
