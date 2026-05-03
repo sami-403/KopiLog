@@ -4,10 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kopilog</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <div class="form-container hidden" id="form-container">
+        <form id="cliente-form" autocomplete="off" class="form-card">
+            <div class="form-inputs">
+                <input type="text" id="input-nome" placeholder="Nome" required>
+                <input type="date" id="input-nascimento" placeholder="Nascimento" required>
+                <button type="submit">Adicionar Cliente</button>
+            </div>
+        </form>
+    </div>
+
     <main>
         <h1>Kopilog</h1>
+        <button id="add-cliente-btn">Adicionar Cliente</button>
         <table id="cliente-table">
             <thead>
                 <tr>
