@@ -23,11 +23,11 @@ export class ClienteView {
         tbody.innerHTML = '';
         
 
-        clientes.forEach((cliente, key) => {
+        clientes.forEach(({ id, cliente }) => {
             const row = document.createElement('tr');
-            row.dataset.key = key;
-            row.id = `cliente-${key}`;
-            row.innerHTML = this.#montarRow(cliente, key);
+            row.dataset.key = id;
+            row.id = `cliente-${id}`;
+            row.innerHTML = this.#montarRow(cliente, id);
             tbody.appendChild(row);
         });
     }
