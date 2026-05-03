@@ -10,9 +10,9 @@ export class ClienteView {
             <td>${cliente.qntVisitou}</td>
             <td>${calcularDesconto(cliente, true)}%</td>
             <td>
-                <button type="button" data-action="visita" data-key="${key}">+ Visita</button>
-                <button type="button" data-action="editar" data-key="${key}">Editar</button>
-                <button type="button" data-action="excluir" data-key="${key}">Excluir</button>
+                <button type="button" class="btn-small" data-action="visita" data-key="${key}">+ Visita</button>
+                <button type="button" class="btn-small" data-action="editar" data-key="${key}">Editar</button>
+                <button type="button" class="btn-small" data-action="excluir" data-key="${key}">Excluir</button>
             </td>
         `;
     }
