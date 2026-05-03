@@ -1,5 +1,21 @@
 import { dataAtualFormatada } from "./Data.js";
 
+export function calcularDesconto(clienteAtual) {
+  const descontoFidelidade = 0.05;
+  const descontoAniversario = 0.1;
+  let descontoTotal = 0;
+
+  if (clienteAtual.nascimento === dataAtualFormatada()) {
+    descontoTotal += descontoAniversario;
+  };
+
+  if (clienteAtual.qntVisitou >= 5) {
+    descontoTotal += descontoFidelidade;
+  }
+
+  return descontoTotal;
+}
+
 export function aplicarDesconto(valor, clienteAtual) {
   const descontoFidelidade = 0.05;
   const descontoAniversario = 0.1;
