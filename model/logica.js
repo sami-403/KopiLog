@@ -1,4 +1,5 @@
 import Cliente from "../model/Cliente.js";
+import { dataInputFormatada } from "../utils/Data.js";
 
 // gerador de Id para ser a chave dos clientes.
 export function gerarId() {
@@ -9,8 +10,9 @@ export function gerarId() {
 export const clientesCache = new Map();
 
 //Cria um id para o cliente e adiciona ele no map e depois retorna o objeto
-export function criarCliente({nome, nascimento }) {
+export function criarCliente(nome, nascimento) {
   const id = gerarId();
+  nascimento = dataInputFormatada(nascimento);
   const novoCliente = new Cliente({ nome, nascimento });
   clientesCache.set(id, novoCliente);
   return { id: id, cliente: novoCliente };
@@ -31,7 +33,7 @@ export function pegarClientes() {
 export function registrarCompra(id, item, valor) {
   const cliente = clientesCache.get(id);
   if (!cliente) {
-      return null;
+    return null;
   }
 
   cliente.registrarVisita();
