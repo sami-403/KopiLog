@@ -1,10 +1,13 @@
 import { ClienteView } from "./view/clienteView.js";
+import { FormView } from "./view/formView.js";
 import { clientesCache } from "./model/logica.js";
 import Cliente from "./model/cliente.js";
 
 const tbody = document.querySelector('#cliente-table tbody');
+const formButton = document.getElementById('add-cliente-btn');
 
 const clienteView = new ClienteView();
+const formView = new FormView();
 
 // Adicionando clientes de exemplo para teste (substituir por chamadas do controller, quando implementado)
 const clienteA = new Cliente({'nome': 'John Doe', 'nascimento': '03/05'});
@@ -21,16 +24,33 @@ tbody.addEventListener('click', (event) => {
 
     const action = button.dataset.action;
     const key = button.dataset.key;
+    const cliente = clientesCache.get(key);
+    console.log(action, key);
+
+    if(!cliente) {
+        console.warn(`Cliente com chave ${key} não encontrado.`);
+        return;
+    }
 
     // Verifica se a ação é de registrar visita
     if (action === 'visita') {
         // Substituir por chamada do controller, quando implementado
-        const cliente = clientesCache.get(key);
-        if (cliente) {
-            cliente.registrarVisita(); 
-            clienteView.update(cliente, key);
-        }
+        cliente.registrarVisita(); 
+        clienteView.update(cliente, key);
+        return;
+    }
+
+    if (action === 'editar') {
+        event.stopPropagation();
+        formView.show();
+        formView.render(clientesCache.get(key));
+        return;
     }
 });
 
 
+formButton.addEventListener('click', (event) => {
+    // Lógica para mostrar o formulário de cadastro (substituir por chamada do controller, quando implementado)
+    event.stopPropagation();
+    formView.show();
+});
