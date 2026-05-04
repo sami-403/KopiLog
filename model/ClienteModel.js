@@ -62,6 +62,15 @@ class ClienteModel {
       (cliente) => cliente.nome === nome,
     );
   }
+
+  atualizarCliente(id, { nome, nascimento }) {
+    const cliente = this.clientesCache.get(id);
+    if (!cliente) return null;
+
+    cliente.nome = nome;
+    cliente.nascimento = dataInputFormatada(nascimento);
+    return cliente;
+  }
 }
 
 // Exporta uma instância única (Singleton)

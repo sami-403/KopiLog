@@ -42,7 +42,7 @@ tbody.addEventListener('click', (event) => {
     if (action === 'editar') {
         event.stopPropagation();
         formView.show();
-        formView.render(cliente);
+        formView.render(cliente, key);
         return;
     }
 
@@ -55,6 +55,7 @@ tbody.addEventListener('click', (event) => {
 
 formButton.addEventListener('click', (event) => {
     event.stopPropagation();
+    formView.clear();
     formView.show();
 });
 
@@ -71,6 +72,10 @@ form.addEventListener('submit', (event) => {
         return;
     }
 
-    clienteController.adicionarCliente({ nome, nascimento });
+    if (formView.editingId) {
+        clienteController.atualizarCliente(formView.editingId, { nome, nascimento });
+    } else {
+        clienteController.adicionarCliente({ nome, nascimento });
+    }
     formView.hide();
 });

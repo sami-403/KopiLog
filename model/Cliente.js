@@ -16,12 +16,20 @@ export default class Cliente {
     return this._nome;
   }
 
+  set nome(novoNome) {
+    this._nome = novoNome;
+  }
+
   get qntVisitou() {
     return this.#visitasIndividuais;
   }
 
   get nascimento() {
     return this._nascimento;
+  }
+
+  set nascimento(novaData) {
+    this._nascimento = novaData;
   }
 
   registrarCompra(item, valor) {
