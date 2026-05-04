@@ -195,4 +195,24 @@ button.secondary:hover {
 }
 
 @media (max-width: 900px) {
+  .container {
+    padding: 1rem;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .form-card {
+    padding: 1.5rem;
+  }
+
+  /* Permite rolagem horizontal na tabela em telas pequenas */
+  #cliente-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }
