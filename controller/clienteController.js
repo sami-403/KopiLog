@@ -26,4 +26,11 @@ export class ClienteController {
             this.view.render(this.model.pegarClientes());
         }
     }
+
+    atualizarCliente(id, data) {
+        const cliente = this.model.atualizarCliente(id, data);
+        if (cliente) {
+            this.view.render(this.model.pegarClientes());
+        }
+    }
 }

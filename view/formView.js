@@ -30,6 +30,7 @@ export class FormView {
     }
 
     clear() {
+        this.clearId();
         this.form.querySelector('#input-nome').value = '';
         this.form.querySelector('#input-nascimento').value = '';
 
@@ -39,9 +40,14 @@ export class FormView {
         }
     }
 
-    render(cliente) {
+    render(cliente, id) {
+        this.editingId = id;
         this.form.querySelector('#input-nome').value = cliente.nome;
         this.form.querySelector('#input-nascimento').value = cliente.nascimento;
+    }
+
+    clearId() {
+        this.editingId = null;
     }
 
     errorFeedback(message) {
